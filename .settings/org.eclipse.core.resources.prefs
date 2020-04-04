@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/application.properties=UTF-8
+encoding//src/main/resources/templates/admin/listCategory.html=UTF-8
+encoding//src/main/resources/templates/include/admin=UTF-8
+encoding//src/main/resources/templates/include/admin/adminFooter.html=UTF-8
+encoding//src/main/resources/templates/include/admin/adminHeader.html=UTF-8
+encoding//src/main/resources/templates/include/admin/adminNavigator.html=UTF-8
+encoding//src/main/resources/templates/include/admin/adminPage.html=UTF-8

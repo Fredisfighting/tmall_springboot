@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: 12032
+Build-Jdk: 13.0.1
+Implementation-Title: tmall_springboot
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.how2java.tmall
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/tmall_springbo
+ ot/
+Created-By: Maven Integration for Eclipse
+
