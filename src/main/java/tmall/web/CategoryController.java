@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,5 +66,17 @@ public class CategoryController {
 	@GetMapping("/categories/{id}")
 	public Object get(@PathVariable("id") int id){
 		return categoryService.get(id);
+	}
+	
+	@PutMapping("categories/{id}")
+	public Object update(Category bean,MultipartFile image,HttpServletRequest request) throws Exception{
+		String name = request.getParameter("name");
+		bean.setName(name);
+		categoryService.update(bean);
+		
+		if(image!=null) {
+			saveOrUpdateImageFile(bean, image, request);
+		}
+		return bean;
 	}
 }
