@@ -24,6 +24,7 @@ import tmall.util.Page4Navigator;
 import tmall.pojo.Category;
 
 @RestController
+//所有返回值都会被转换成json对象
 public class CategoryController {
 	@Autowired CategoryService categoryService;
 	

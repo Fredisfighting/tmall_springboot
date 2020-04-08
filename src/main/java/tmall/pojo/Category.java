@@ -18,6 +18,7 @@ public class Category {
     @Column(name = "id")
     int id;
     
+    @Column(name="name")
     String name;
 
 	public int getId() {
