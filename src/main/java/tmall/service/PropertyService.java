@@ -1,5 +1,7 @@
 package tmall.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,5 +41,9 @@ public class PropertyService {
 		  Pageable pageable = new PageRequest(start, size, sort);
 		  Page<Property> pageFromJPA = propertyDAO.findByCategory(category, pageable);
 		  return new Page4Navigator<Property>(pageFromJPA,navigatePages);
+	 }
+	 
+	 public List<Property> listByCategory(Category category){
+		 return propertyDAO.findByCategory(category);
 	 }
 }
