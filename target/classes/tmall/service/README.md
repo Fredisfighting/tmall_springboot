@@ -5,7 +5,7 @@
 @RequestParam是获取url参数
 
 ## 返回值
-Page4Navigator是Page的封装，类似list容器，<>内的东西表示容器装的类型
+Page4Navigator是Page的封装，类似list容器，<>内的东西表示容器装的类型(即content字段值列表里装的对象类型)
 返回值示例
 
 ``` json

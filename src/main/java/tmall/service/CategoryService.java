@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 
 import tmall.dao.CategoryDAO;
 import tmall.pojo.Category;
+import tmall.pojo.Product;
 import tmall.util.Page4Navigator;
 
 //看不懂
@@ -49,4 +50,30 @@ public class CategoryService {
 	public void update(Category bean) {
 		categoryDAO.save(bean);
 	}
+	
+    public void removeCategoryFromProduct(List<Category> cs) {
+        for (Category category : cs) {
+            removeCategoryFromProduct(category);
+        }
+    }
+ 
+    //待理解
+    public void removeCategoryFromProduct(Category category) {
+        List<Product> products =category.getProducts();
+        if(null!=products) {
+            for (Product product : products) {
+                product.setCategory(null);
+            }
+        }
+ 
+        List<List<Product>> productsByRow =category.getProductsByRow();
+        if(null!=productsByRow) {
+            for (List<Product> ps : productsByRow) {
+                for (Product p: ps) {
+                    p.setCategory(null);
+                }
+            }
+        }
+    }
+	
 }
