@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import tmall.dao.OrderItemDAO;
 import tmall.pojo.Order;
 import tmall.pojo.OrderItem;
+import tmall.pojo.Product;
 
 @Service
 public class OrderItemService {
@@ -38,4 +39,20 @@ public class OrderItemService {
        return orderItemDAO.findByOrderOrderByIdDesc(order);
    }
     
+   public List<OrderItem> listByProduct(Product product){
+	   return orderItemDAO.findByProduct(product);
+   }
+   
+   public int getSaleCount(Product product) {
+	   List<OrderItem> items = listByProduct(product);
+	   int result = 0;
+	   for(OrderItem item:items) {
+		   if(null != item.getOrder()) {
+			   if(null != item.getOrder().getPayDate()) {
+				   result += item.getNumber();
+			   }
+		   }
+	   }
+	   return result;
+   }
 }

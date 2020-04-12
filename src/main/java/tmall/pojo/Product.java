@@ -1,6 +1,7 @@
 package tmall.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,6 +43,17 @@ public class Product {
 	@Transient
 	private ProductImage firstProductImage;
 
+	@Transient
+	private List<ProductImage> productSingleImages;
+	
+	@Transient
+	private List<ProductImage> productDetailImages;
+	
+	@Transient
+	private int saleCount;
+	
+	@Transient
+	private int reviewCount;
 	public int getId() {
 		return id;
 	}
@@ -112,5 +124,46 @@ public class Product {
 	
 	public void setFirstProductImage(ProductImage firstProductImage) {
 		this.firstProductImage = firstProductImage;
+	}
+
+	public List<ProductImage> getProductSingleImages() {
+		return productSingleImages;
+	}
+
+	public void setProductSingleImages(List<ProductImage> productSingleImages) {
+		this.productSingleImages = productSingleImages;
+	}
+
+	public List<ProductImage> getProductDetailImages() {
+		return productDetailImages;
+	}
+
+	public void setProductDetailImages(List<ProductImage> productDetailImages) {
+		this.productDetailImages = productDetailImages;
+	}
+
+	public int getSaleCount() {
+		return saleCount;
+	}
+
+	public void setSaleCount(int saleCount) {
+		this.saleCount = saleCount;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", category=" + category + ", name=" + name + ", subTitle=" + subTitle
+				+ ", originalPrice=" + originalPrice + ", promotePrice=" + promotePrice + ", stock=" + stock
+				+ ", createDate=" + createDate + ", firstProductImage=" + firstProductImage + ", productSingleImages="
+				+ productSingleImages + ", productDetailImages=" + productDetailImages + ", saleCount=" + saleCount
+				+ ", reviewCount=" + reviewCount + "]";
 	}
 }
