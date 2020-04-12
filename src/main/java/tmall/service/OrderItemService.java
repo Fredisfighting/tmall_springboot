@@ -10,12 +10,24 @@ import tmall.dao.OrderItemDAO;
 import tmall.pojo.Order;
 import tmall.pojo.OrderItem;
 import tmall.pojo.Product;
+import tmall.pojo.User;
 
 @Service
 public class OrderItemService {
    @Autowired OrderItemDAO orderItemDAO;
    @Autowired ProductImageService productImageService;
 
+   public OrderItem get(int id) {
+	   return orderItemDAO.findOne(id);
+   }
+   public void add(OrderItem oi) {
+	   orderItemDAO.save(oi);
+   }
+   
+   public void update(OrderItem oi) {
+	   orderItemDAO.save(oi);
+   }
+   
    public void fill(List<Order> orders) {
        for (Order order : orders)
            fill(order);
@@ -54,5 +66,9 @@ public class OrderItemService {
 		   }
 	   }
 	   return result;
+   }
+   
+   public List<OrderItem> listByUser(User user){
+	   return orderItemDAO.findByUserAndOrderIsNull(user);
    }
 }

@@ -1,5 +1,6 @@
 package tmall.web;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -22,12 +23,14 @@ import tmall.comparator.ProductPriceComparator;
 import tmall.comparator.ProductReviewComparator;
 import tmall.comparator.ProductSaleCountComparator;
 import tmall.pojo.Category;
+import tmall.pojo.OrderItem;
 import tmall.pojo.Product;
 import tmall.pojo.ProductImage;
 import tmall.pojo.PropertyValue;
 import tmall.pojo.Review;
 import tmall.pojo.User;
 import tmall.service.CategoryService;
+import tmall.service.OrderItemService;
 import tmall.service.ProductImageService;
 import tmall.service.ProductService;
 import tmall.service.PropertyService;
@@ -52,6 +55,8 @@ public class ForeRESTController {
     PropertyValueService propertyValueService;
     @Autowired
     ReviewService reviewService;
+    @Autowired
+    OrderItemService orderItemService;
     
     @GetMapping("/forehome")
     public Object home() {
@@ -171,5 +176,59 @@ public class ForeRESTController {
     	productImageService.setFirstProductImages(products);
     	productService.setSaleAndReviewNuber(products);
     	return products;
+    }
+    
+    @GetMapping("forebuyone")
+    public Object buyone(int pid, int num, HttpSession session) {
+        return buyoneAndAddCart(pid,num,session);
+    }
+    private int buyoneAndAddCart(int pid, int num, HttpSession session) {
+        Product product = productService.get(pid);
+        int oiid = 0;
+ 
+        User user =(User)  session.getAttribute("user");
+        boolean found = false;
+        List<OrderItem> ois = orderItemService.listByUser(user);
+        for (OrderItem oi : ois) {
+            if(oi.getProduct().getId()==product.getId()){
+                oi.setNumber(oi.getNumber()+num);
+                orderItemService.update(oi);
+                found = true;
+                oiid = oi.getId();
+                break;
+            }
+        }
+ 
+        if(!found){
+            OrderItem oi = new OrderItem();
+            oi.setUser(user);
+            oi.setProduct(product);
+            oi.setNumber(num);
+            orderItemService.add(oi);
+            oiid = oi.getId();
+        }
+        return oiid;
+    }
+    
+    @GetMapping("forebuy")
+    public Object buy(String[] oiid,HttpSession session){
+        List<OrderItem> orderItems = new ArrayList<>();
+        float total = 0;
+
+        for (String strid : oiid) {
+            int id = Integer.parseInt(strid);
+            OrderItem oi= orderItemService.get(id);
+            total +=oi.getProduct().getPromotePrice()*oi.getNumber();
+            orderItems.add(oi);
+        }
+
+        productImageService.setFirstProdutImagesOnOrderItems(orderItems);
+
+        session.setAttribute("ois", orderItems);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("orderItems", orderItems);
+        map.put("total", total);
+        return Result.success(map);
     }
 }
