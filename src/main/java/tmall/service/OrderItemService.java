@@ -28,6 +28,10 @@ public class OrderItemService {
 	   orderItemDAO.save(oi);
    }
    
+   public void delete(int id) {
+	   orderItemDAO.delete(id);
+   }
+   
    public void fill(List<Order> orders) {
        for (Order order : orders)
            fill(order);
