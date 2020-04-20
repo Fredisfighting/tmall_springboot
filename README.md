@@ -22,6 +22,8 @@ http://116.62.11.33:8080/
 | 数据库     | mysql      |
 | 持久层框架 | hibernate  |
 | JS         | vue+jquery |
+| 安全框架   | Shiro      |
+| 模板引擎   | Thymeleaf  |
 
 ## 数据库表结构
 
