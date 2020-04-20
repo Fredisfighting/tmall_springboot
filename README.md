@@ -6,11 +6,11 @@ http://116.62.11.33:8080/
 
 ## 介绍
 
-从[How2J的Java教程](http://how2j.cn/)模仿学习，主要为了巩固Java的知识点和框架的使用。 主要是偏后端学习+前端js简单使用，前端界面直接用现成的。
+从[How2J的Java教程](http://how2j.cn/)模仿学习，主要为了巩固Java的知识点和框架的使用。 
 
-## 使用
+## 部署
 
-由于项目是基于springboot框架，也就是maven风格，所以导入项目直接打开pom.xml即可。并通过入口类SpringbootApplication启动(内置tomcat)。
+由于项目是基于springboot框架，通过打包成war的形式通过tomcat访问
 
 ## 技术简述
 
@@ -30,7 +30,7 @@ http://116.62.11.33:8080/
 - user：用户表
 - category：分类表，如大衣，冰箱
 - product：产品表，每个分类有多个产品
-- productImage:产品图片表，图片放在数据库中，方便迁移
+- productImage:产品图片表
 - property：属性表，存放属性信息，如颜色，重量，品牌，厂商，型号等
 - propertyvalue：属性值表，红色，90kg，海尔等等
 - order：订单表
