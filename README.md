@@ -10,7 +10,7 @@ http://116.62.11.33:8080/
 
 ## 部署
 
-由于项目是基于springboot框架，通过打包成war的形式通过tomcat访问
+本项目是基于springboot框架，通过打包成war的形式通过tomcat访问
 
 ## 技术简述
 
